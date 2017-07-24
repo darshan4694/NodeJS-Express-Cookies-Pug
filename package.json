@@ -19,6 +19,7 @@
   "homepage": "https://github.com/darshan4694/Express-flashcards-app#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
     "express": "^4.15.3",
     "pug": "^2.0.0-rc.2"
   }
