@@ -1,21 +1,11 @@
-doctype html
-html(lang="en")
-    head
-        title Landing page
-    body
-        header
-            h1 Flash Cards
-        section#content
-            h2= prompt
-            if hint
-                p
-                    i hint: #{hint}
-            else
-                p
-                    i No hint for this card.
-            
-            ul
-                each color in colors
-                    li= color
-        footer
-            p An app to help you study
+extends layout.pug
+
+block content
+    section#content
+        h2= prompt
+        if hint
+            p
+                i hint: #{hint}
+        else
+            p
+                i No hint for this card!
