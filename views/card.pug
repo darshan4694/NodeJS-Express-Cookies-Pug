@@ -7,7 +7,11 @@ html(lang="en")
             h1 Flash Cards
         section#content
             h2= prompt
-            p
-                i hint: #{hint}
+            if hint
+                p
+                    i hint: #{hint}
+            else
+                p
+                    i No hint for this card.
         footer
             p An app to help you study

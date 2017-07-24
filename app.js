@@ -9,7 +9,8 @@ app.get('/',(req, res) => {
 });
 
 app.get('/cards',(req, res) => {
-    res.render('card',{prompt: "Name 3 characteristics of leadership?", hint: "It includes Motivation and leading."});
+    res.render('card',{prompt: "Name 3 characteristics of leadership?", 
+    hint: "It includes Motivation and leading."});
     // res.send("This is first page!");
 });
 
