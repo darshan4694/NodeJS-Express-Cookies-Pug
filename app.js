@@ -12,4 +12,6 @@ app.get('/first',(req, res) => {
     res.send("This is first page!");
 });
 
-app.listen(3000);
+app.listen(3000, () => {
+    console.log("Go to localhost:3000");
+});
