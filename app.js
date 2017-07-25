@@ -1,16 +1,32 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 var app = express();
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+
+app.use(express.static('public'));
+
 app.set('view engine', 'pug');
 
-app.get('/',(req, res) => {
-    res.render('index');
+const mainRoutes = require('./routes');
+const cardsRoutes = require('./routes/cards');
+
+app.use(mainRoutes);
+app.use('/cards', cardsRoutes);
+
+app.use((req, res, next) => {
+    const error = new Error("Page Not Found");
+    error.status = 404;
+    next(error);
 });
 
-app.get('/cards',(req, res) => {
-    res.render('card',{prompt: "Name 3 characteristics of leadership?", hint: "It includes Motivation and leading."});
-    // res.send("This is first page!");
+app.use((error, req, res, next) => {
+    res.locals.error = error;
+    res.status(error.status);
+    res.render('error');
 });
 
 app.listen(3000, () => {

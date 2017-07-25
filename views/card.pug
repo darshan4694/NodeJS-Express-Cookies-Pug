@@ -1,13 +1,12 @@
-doctype html
-html(lang="en")
-    head
-        title Landing page
-    body
-        header
-            h1 Flash Cards
-        section#content
-            h2= prompt
+extends layout.pug
+
+block content
+    section#content
+        h2= text
+        if hint
             p
                 i hint: #{hint}
-        footer
-            p An app to help you study
+        
+        a(href= `${id}?side=${sideToShow}`)= sideToShowText
+        br
+        a(href= `/cards`) Next Card!
