@@ -23,6 +23,7 @@ app.use((req, res, next) => {
     next(error);
 });
 
+
 app.use((error, req, res, next) => {
     res.locals.error = error;
     res.status(error.status);
