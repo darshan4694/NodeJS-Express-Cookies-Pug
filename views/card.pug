@@ -6,6 +6,5 @@ block content
         if hint
             p
                 i hint: #{hint}
-            a(href= link) Answer
-        else
-            a(href= link) Question
+        
+        a(href= `${id}?side=${sideToShow}`)= sideToShowText

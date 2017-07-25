@@ -9,15 +9,16 @@ router.get('/:id', (req, res) => {
     const { side } = req.query;
     const { id } = req.params;
     const text = cards[id][side];
-    const templateData = { text };
+    const templateData = { id, text };
     const {hint} = cards[id];
     const link = '/cards/'+id;
     if (side === 'question') {
         //const { hint } = cards[id];
-        templateData.link = link + '?side=answer';
-        templateData.hint = hint;
-    } else {
-        templateData.link = link + '?side=question';
+        templateData.sideToShow = 'answer';
+        templateData.sideToShowText = 'Answer';
+    } else if (side === 'answer'){
+        templateData.sideToShow = 'question';
+        templateData.sideToShowText = 'Question';
     }
     //console.log(side);
     res.render('card', templateData);
