@@ -11,12 +11,6 @@ router.get('/',(req, res) => {
     }
 });
 
-router.get('/cards',(req, res) => {
-    res.render('card',{prompt: "Name 3 characteristics of leadership?", 
-    hint: "It includes Motivation and leading.", colors});
-    // res.send("This is first page!");
-});
-
 router.get('/hello', (req, res) => {
     const name = req.cookies.username;
     if(name){
