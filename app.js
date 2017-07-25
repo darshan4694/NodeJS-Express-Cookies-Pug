@@ -11,7 +11,8 @@ app.set('view engine', 'pug');
 
 app.use((req, res, next) => {
     req.message = "This a simple message set in middleware"
-    next();
+    const error = new Error("An error has encountered!")
+    next(error);
 });
 app.use((req, res, next) => {
     console.log(req.message);
