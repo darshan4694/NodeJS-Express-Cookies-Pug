@@ -1,10 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/',(req, res) => {
-    res.render('card',{prompt: "Name 3 characteristics of leadership?", 
-    hint: "It includes Motivation and leading."});
-    // res.send("This is first page!");
+const { data } = require('../data/flashCardsData');
+const { cards } = data;
+
+router.get('/:id',(req, res) => {
+    res.render('card',{prompt: cards[req.params.id].question, 
+    hint: cards[req.params.id].hint});
 });
 
 module.exports = router;
