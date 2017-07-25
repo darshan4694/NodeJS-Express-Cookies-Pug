@@ -24,4 +24,10 @@ router.get('/:id', (req, res) => {
     res.render('card', templateData);
 });
 
+
+router.get('/', (req, res) => {
+    var randomNumber = Math.floor(Math.random() * cards.length);
+
+    res.redirect('/cards/'+randomNumber +'?side=question');
+});
 module.exports = router;
