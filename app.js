@@ -9,57 +9,14 @@ app.use(cookieParser());
 
 app.set('view engine', 'pug');
 
-// app.use((req, res, next) => {
-//     req.message = "This a simple message set in middleware";
-//     const error = new Error("An error has encountered!");
-//     error.status = 500;
-//     next(error);
-// });
-// app.use((req, res, next) => {
-//     console.log(req.message);
-//     next();
-// });
+const mainRoutes = require('./routes');
 
-app.get('/',(req, res) => {
-
-     const name = req.cookies.username;
-    if(name){
-       res.render('index', {name});
-    } else{
-        res.redirect('/hello');
-    }
-});
-
-app.get('/cards',(req, res) => {
-    res.render('card',{prompt: "Name 3 characteristics of leadership?", 
-    hint: "It includes Motivation and leading.", colors});
-    // res.send("This is first page!");
-});
-
-app.get('/hello', (req, res) => {
-    const name = req.cookies.username;
-    if(name){
-       res.redirect('/');
-    } else{
-        res.render('hello');
-    }
-});
-
-app.post('/hello', (req, res) => {
-    res.cookie('username', req.body.username);
-    res.redirect('/');
-});
-
-app.post('/goodbye', (req, res) => {
-    res.clearCookie('username');
-    res.redirect('/hello');
-});
+app.use(mainRoutes);
 
 app.use((req, res, next) => {
     const error = new Error("Page Not Found");
     error.status = 404;
-    res.locals.error = error;
-    res.render('error');
+    next(error);
 });
 
 app.use((error, req, res, next) => {
