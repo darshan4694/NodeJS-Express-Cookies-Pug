@@ -2,10 +2,10 @@ extends layout.pug
 
 block content
     section#content
-        h2= prompt
+        h2= text
         if hint
             p
                 i hint: #{hint}
+            a(href= link) Answer
         else
-            p
-                i No hint for this card!
+            a(href= link) Question
