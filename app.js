@@ -9,6 +9,18 @@ app.use(cookieParser());
 
 app.set('view engine', 'pug');
 
+app.use((req, res, next) => {
+    console.log("first middleware");
+    next();
+}, (req, res, next) => {
+    console.log("second middleware");
+    next();
+});
+app.use((req, res, next) => {
+    console.log("third middleware");
+    next();
+});
+
 app.get('/',(req, res) => {
 
      const name = req.cookies.username;
