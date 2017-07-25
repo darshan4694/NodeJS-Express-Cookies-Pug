@@ -10,8 +10,9 @@ app.use(cookieParser());
 app.set('view engine', 'pug');
 
 app.use((req, res, next) => {
-    req.message = "This a simple message set in middleware"
-    const error = new Error("An error has encountered!")
+    req.message = "This a simple message set in middleware";
+    const error = new Error("An error has encountered!");
+    error.status = 500;
     next(error);
 });
 app.use((req, res, next) => {
@@ -52,7 +53,13 @@ app.post('/hello', (req, res) => {
 app.post('/goodbye', (req, res) => {
     res.clearCookie('username');
     res.redirect('/hello');
-})
+});
+
+app.use((error, req, res, next) => {
+    res.locals.error = error;
+    res.status(error.status);
+    res.render('error');
+});
 
 app.listen(3000, () => {
     console.log("Go to localhost:3000");
