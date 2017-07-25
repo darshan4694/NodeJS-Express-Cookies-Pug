@@ -10,14 +10,11 @@ app.use(cookieParser());
 app.set('view engine', 'pug');
 
 app.use((req, res, next) => {
-    console.log("first middleware");
-    next();
-}, (req, res, next) => {
-    console.log("second middleware");
+    req.message = "This a simple message set in middleware"
     next();
 });
 app.use((req, res, next) => {
-    console.log("third middleware");
+    console.log(req.message);
     next();
 });
 
